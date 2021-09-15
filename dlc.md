@@ -4,7 +4,7 @@ is a wordplay on the "discrete logarithm problem" and the fact that contracts ar
 
 ### Refresher
 
-s = k - h * d
+s = k - hash(message || R || P) * d
 
 R = k*G
 
@@ -15,7 +15,9 @@ Alice and Bob want to bet against each other, Olivia is the oracle
 Olivia just publishes one R for that particular bet (she commits to a R value). All possible outcomes need to be known in advance!
 
 Now anyone can calculate
-si * G. Let's say the bet is "heads" vs. "tails".
+si * G. 
+
+Let's say the bet is "heads" vs. "tails".
 
 so 
 - sHEADS * G = R - hash("heads" || R)*O
