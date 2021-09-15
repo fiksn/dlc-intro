@@ -61,7 +61,7 @@ If it isn't you can factor out d - which is your private key!
 ### MuSig (n/n)
 
 Unlike ECDSA Schnorr signatures are linear and can be combined.
-It is possible to compress multiple public keys into one and then
+It is possible to "compress" multiple public keys into one and then
 also signers can cooperate and produce master private key for spending the funds.
 
 ### Ring signatures
@@ -69,8 +69,7 @@ also signers can cooperate and produce master private key for spending the funds
 [Abe, Okhubo, Suzuki](https://cryptoservices.github.io/cryptography/2017/07/21/Sigs.html) usage of Schnorr signatures
 
 Idea is that you have participants P1, P2 ... Pn
-At least one of them needs to sign and signature is valid, but you can't know
-who signed.
+Anyone can sign but you can't know which of them was it.
 
 [Previous - ECC](./ecc101.md) 
 
