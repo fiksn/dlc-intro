@@ -1,10 +1,11 @@
 ## Discreet Log Contracts
 
-is a wordplay on the "discrete logarithm problem" and the fact that oracles are discreet - they are not even aware of the actual bet. It was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of lightning network.
+is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using his data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of lightning network.
 
 ### Refresher
 
 s = k - h * d
+
 R = k*G
 
 ### Operations
@@ -33,7 +34,8 @@ Before that block is transmitted to the blokchain they make sure each peer signs
 Alice bets on "heads" and creates an output that can be spent using private key ai
 
 Public key Ai is defined as A + sHEADS * G
-so it is her public key but skewed e that (sHEADS * G) which is publicly known (depending on R from Olivia).
+so it is her public key but skewed with (sHEADS * G) which is publicly known (depending on R from Olivia).
+
 Bob verifies that the value is correct and signs the transaction Alice gave him (since he knows Alice can't possibly know the private key and will know it just if she won)
 
 Then also Bob creates a spend from the multisig: he uses bi and in the tx you can see public key Bi which is B + sTAILS * G. Now Alice verifies the same way and eventually signs.

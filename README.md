@@ -1,7 +1,7 @@
 # dlc-intro
 A gentle introduction to Discreet Log Contracts (DLCs) on Bitcoin
 
-They offer a way to implement financial smart contracts on Bitcoin and what is more I believe they could also be used directly via Lightning
+They offer a way to implement financial smart contracts on Bitcoin and what is more I believe they could also be used directly via Lightning channels.
 
 Outline: 
 
