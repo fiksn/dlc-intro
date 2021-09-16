@@ -1,6 +1,6 @@
 ## Discreet Log Contracts
 
-is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using his data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of lightning network.
+is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using his data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of Lightning network.
 
 [Alternative expanation](https://atomic.finance/blog/a-laypersons-guide-to-discreet-log-contracts-atomic-yield-series-part-3/)
 
@@ -14,7 +14,7 @@ R = k*G
 
 Alice and Bob want to bet against each other. They could create 2-of-2 multisig, but what if loser is not cooperating?
 
-In 2-of-3 multisig they need an oracle (Olivia). However how to make sure  she doesn't collude with the loser?
+In 2-of-3 multisig they need an oracle (Olivia). However how to make sure she doesn't collude with the loser?
 
 You could use smart contracts (e.g., on Ethereum) but this is expensive and not very private. Enter DLCs on Bitcoin.
 
@@ -35,11 +35,11 @@ so
 
 R is the published value, O is Olivias public key
 
-this s values are also called "encryptors"
+this values (points on the eliptic curve) are called **encryptors**
 
 ### Channel
 
-For Alice and Bob it is very similar to lightning channel: they create a 2-of-2 multisig.
+For Alice and Bob it is very similar to opening a lightning channel: they create a 2-of-2 multisig.
 
 #### Bailout
 
@@ -49,7 +49,7 @@ Before that block is transmitted to the blokchain Alice and Bob make sure each p
 
 Alice bets on "heads" and creates an output from that UTXO that can be spent using the private key for some public key Ai that is defined as A + sHEADS * G
 
-That is her public key but skewed with (sHEADS * G) which is publicly known (depending on R from Olivia). She signs the transaction, but without Bob's signature that can't be broadcasted to the network.
+That is her public key but skewed with an encryptor (sHEADS * G) which is publicly known (depending on R from Olivia). She signs the transaction, but without Bob's signature that can't be broadcasted to the network.
 
 Bob verifies that the value is correct and signs the transaction Alice gave him (since he knows Alice can't possibly know the private key and will know it just if she won).
 
@@ -83,14 +83,13 @@ She must use a random k each time. Using the same k twice - she loses her privat
 
 If must be possible to enumerate all possible outcomes in advance (for price this can get messy). You can then use a certain discretization.
 
-Only one outcome can win (or none), if there are combinations you need to create a power-set. (User can still bet on multiple outcomes, but care has to be taken by peers if that creates a sure bet). Like Bob woudn't sign Alice
-a bet on "heads" and then also "tails", since he knows this way he will just
-lose his money.
+Only one outcome can win (or none), if there are combinations you need to create a power-set. (User can still bet on multiple outcomes, but care has to be taken by peers if that creates a sure bet). 
+
+E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he knows this way he will just lose his money.
 
 #### Usages
 
-- [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to yearn income on your Bitcoin without giving up custody
-- [SuredBits](https://suredbits.com) - they have [oracles](https://oracle.suredbits.com/)
-- [Discrete Log Contract for Difference](https://suredbits.com/settlement-of-dlcfd/) on SuredBits blog
+- [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to earn income on your BTC without giving up custody
+- [SuredBits](https://suredbits.com) - they also have [oracles](https://oracle.suredbits.com/) and presented something called [Discrete Log Contract for Difference - DLCFD](https://suredbits.com/settlement-of-dlcfd/)
 
 [Previous - Schnorr](./schnorr.md) 

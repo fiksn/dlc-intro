@@ -1,6 +1,9 @@
 ## Schnorr Signature Scheme
 
-It was invented by german mathematician Claus-Peter Schnorr ![Claus-Peter Schnorr](./Claus-Peter_Schnorr.jpg). 
+![Claus-Peter Schnorr](./Claus-Peter_Schnorr.jpg).
+(Image: Claus-Peter Schnorr - from Wikipedia)
+
+It was invented by german mathematician Claus-Peter Schnorr.
 
 Unfortunately he patented the scheme in 1988 (patent expired in February 2008). So during the creation of Bitcoin it was "free", unfortunately the space lacked good libraries. Therefore ECDSA scheme was used (which is more complicated on purpose to not violate the patent).
 
@@ -61,7 +64,7 @@ k is called nonce since it must be used exactly once
 
 If it isn't you can factor out d - which is your private key!
 
-### MuSig (n/n)
+### MuSig (n-of-n)
 
 Unlike ECDSA Schnorr signatures are linear and can be combined. It is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
 
