@@ -1,0 +1,12 @@
+## Frequently asked (tricky) questions and answers
+
+- Q: How can DLCs already work in practice given that Taproot has not yet activated on mainnet and we thus don't have Schnorr signatures yet?
+A: In fact only the oracle (Olivia) needs to use Schnorr signatures and
+this data is all off-chain. So it doesn't depend on Bitcoin at all. Alice and Bob just need to tweak their public and private key in a provable way. For ECDSA there is a complex solution **adapter signatures** (https://medium.com/crypto-garage/adaptor-signature-on-ecdsa-cac148dfa3ad). But an easy hack since combination of keys is hard with ECDSA is just to use multisig. So Alice can use her key and the encryptor as a seperate key. And the fact public key is private key times G (point on elliptic curve) is the same no matter what signature scheme is used.
+
+- Q: How can DLCs enable hashrate derivates (https://suredbits.com/hashrate-derivatives-with-dlcs-coinbase-put-contracts/). Coinbase cannot be spent first 100 blocks which means you also can't open a 2-of-2 multisig?
+A: Actually I forgot to mention https://github.com/fiksn/dlc-intro/blob/master/dlc.md#liveness-argument-dos-prevention in the talk. There is no need to even transmit the 2-of-2 on-chain. In that case other party can just double spend the UTXO and thus make sure the 2-of-2 can never be commited. And thus all agreements based on that are void. That could be abused by the losing party to pretent nothing happened and get her stake back. But for 100 blocks I am confident that other party cannot cheat that way. So I just need to make sure that afterwards there is no race-condition. (TODO how can we prevent that?)
+
+- Q: How do timelocks on Bitcoin work?
+A: Each transaction has **nLockTime** field which means do not include this transaction in a block until constraint is met. If the value is < 500000000 it means minimal block height and higher numbers means minimal mean timestamp (as reported by miners in the block). You can transmit transactions with wrong nLockTime but they will never be included in any block, similarly as if you specified a too low fee. BIP65 in 2015 also included an opcode OP_CHECKLOCKTIMEVERIFY to programmatically check that in script. Actually it will just compare nLockTime to the specified value (but as mentioned too high value will not work on the blockchain anyway). BIP68 also brought **nSequence** reporuposing and BIP112 OP_CHECKSEQUENCEVERIFY which can be used to obtain a relative-timelock (depending on when previous UTXO was included in a block).
+
