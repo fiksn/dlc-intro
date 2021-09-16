@@ -2,17 +2,27 @@
 
 is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using his data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of lightning network.
 
-### Refresher
+[Alternative expanation](https://atomic.finance/blog/a-laypersons-guide-to-discreet-log-contracts-atomic-yield-series-part-3/)
+
+### Refresher (Schnorr signatures)
 
 s = k - hash(message || R || P) * d
 
 R = k*G
 
+### Problem statement
+
+Alice and Bob want to bet against each other. They could create 2-of-2 multisig, but what if loser is not cooperating?
+
+In 2-of-3 multisig they need an oracle (Olivia). However how to make sure  she doesn't collude with the loser?
+
+You could use smart contracts (e.g., on Ethereum) but this is expensive and not very private. Enter DLCs on Bitcoin.
+
 ### Operations
 
-Alice and Bob want to bet against each other, Olivia is the oracle
+Olivia just publishes one R for that particular bet (she commits to a R value). All possible outcomes need to be known and agreed upon in advance!
 
-Olivia just publishes one R for that particular bet (she commits to a R value). All possible outcomes need to be known in advance!
+Else Olivia has no idea who will use her data.
 
 Now anyone can calculate
 si * G. 
@@ -25,24 +35,28 @@ so
 
 R is the published value, O is Olivias public key
 
-For Alice and Bob it is very similar to lightning channel: they create a 2/2 multisig output. 
+this s values are also called "encryptors"
+
+### Channel
+
+For Alice and Bob it is very similar to lightning channel: they create a 2-of-2 multisig.
 
 #### Bailout
 
-Before that block is transmitted to the blokchain they make sure each peer signs a bailout transaction. So Alice can whitdraw her part after a timelock, and vice-versa for Bob.
+Before that block is transmitted to the blokchain Alice and Bob make sure each peer signs a bailout transaction. So Alice can whitdraw her part after a timelock, and vice-versa for Bob.
 
 #### Contract
 
-Alice bets on "heads" and creates an output that can be spent using private key ai
+Alice bets on "heads" and creates an output from that UTXO that can be spent using the private key for some public key Ai that is defined as A + sHEADS * G
 
-Public key Ai is defined as A + sHEADS * G
-so it is her public key but skewed with (sHEADS * G) which is publicly known (depending on R from Olivia).
+That is her public key but skewed with (sHEADS * G) which is publicly known (depending on R from Olivia). She signs the transaction, but without Bob's signature that can't be broadcasted to the network.
 
-Bob verifies that the value is correct and signs the transaction Alice gave him (since he knows Alice can't possibly know the private key and will know it just if she won)
+Bob verifies that the value is correct and signs the transaction Alice gave him (since he knows Alice can't possibly know the private key and will know it just if she won).
 
 Then also Bob creates a spend from the multisig: he uses bi and in the tx you can see public key Bi which is B + sTAILS * G. Now Alice verifies the same way and eventually signs.
 
 Those two transactions are never broadcasted on-chain (similar to bailout tx).
+They are called **contract execution transactions (CETs)**.
 
 #### Settlement
 
@@ -72,5 +86,10 @@ If must be possible to enumerate all possible outcomes in advance (for price thi
 Only one outcome can win (or none), if there are combinations you need to create a power-set. (User can still bet on multiple outcomes, but care has to be taken by peers if that creates a sure bet). Like Bob woudn't sign Alice
 a bet on "heads" and then also "tails", since he knows this way he will just
 lose his money.
+
+#### Usages
+
+- [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to yearn income on your Bitcoin without giving up custody
+- [SuredBits](https://suredbits.com) - they have [oracles](https://oracle.suredbits.com/) listed
 
 [Previous - Schnorr](./schnorr.md) 
