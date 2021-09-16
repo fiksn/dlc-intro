@@ -1,10 +1,12 @@
 ## Discreet Log Contracts
 
-is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using his data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of Lightning network.
+is a wordplay on the "discrete logarithm problem" and the fact that contracts are discreet. There is no sign of a smart contract on the blockchain. Also the oracle is not aware of who is using her data. The scheme was presented in the paper [Discreet Log Contracts](https://adiabat.github.io/dlc.pdf) by Thaddeus Dryja who is also one of the creators of Lightning network.
 
 [Alternative expanation](https://atomic.finance/blog/a-laypersons-guide-to-discreet-log-contracts-atomic-yield-series-part-3/)
 
-### Refresher (Schnorr signatures)
+A collection of [DLC resources](https://github.com/aljazceru/discreet-log-contracts) for further reading
+
+### Refresher ([Schnorr signatures](./schnorr.md))
 
 s = k - hash(message || R || P) * d
 
@@ -30,8 +32,8 @@ si * G.
 Let's say the bet is "heads" vs. "tails".
 
 so 
-- sHEADS * G = R - hash("heads" || R)*O
-- sTAILS * G = R - hash("tails" || R)*O
+- sHEADS * G = R - hash("heads" || R || O)*O
+- sTAILS * G = R - hash("tails" || R || O)*O
 
 R is the published value, O is Olivias public key
 
@@ -39,7 +41,7 @@ this values (points on the eliptic curve) are called **encryptors**
 
 ### Channel
 
-For Alice and Bob it is very similar to opening a lightning channel: they create a 2-of-2 multisig.
+For Alice and Bob it is very similar to opening a Lightning channel: they create a 2-of-2 multisig.
 
 #### Bailout
 
@@ -79,13 +81,13 @@ If Olivia just disappears after time-lock both Alice and Bob get their stake bac
 
 Olivia has no incentive to publish the results, it is only her reputation that suffers.
 
-She must use a random k each time. Using the same k twice - she loses her private key.
+She must use a random k each time. Using the same k twice - she loses her private key (which might lead to loss of funds locked in some sort of fidelity bond).
 
 If must be possible to enumerate all possible outcomes in advance (for price this can get messy). You can then use a certain discretization.
 
 Only one outcome can win (or none), if there are combinations you need to create a power-set. (User can still bet on multiple outcomes, but care has to be taken by peers if that creates a sure bet). 
 
-E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he knows this way he will just lose his money.
+E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he knows this way he will just lose money.
 
 #### Usages
 
