@@ -60,7 +60,7 @@ They are called **contract execution transactions (CETs)**.
 
 #### Settlement
 
-Olivia reveals either sHEADS or sTAILS. If she reveals both of them (or more than one in case there more than two options) her private is compromised (can be factored out since same R and thus also k was used).
+Olivia reveals either sHEADS or sTAILS. If she reveals both of them (or more than one in case there more than two options) her private key is compromised (can be factored out since same R and thus also k was used).
 
 Only she can reveal them because o (her private key) must be used for signing.
 
@@ -90,6 +90,7 @@ lose his money.
 #### Usages
 
 - [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to yearn income on your Bitcoin without giving up custody
-- [SuredBits](https://suredbits.com) - they have [oracles](https://oracle.suredbits.com/) listed
+- [SuredBits](https://suredbits.com) - they have [oracles](https://oracle.suredbits.com/)
+- [Discrete Log Contract for Difference](https://suredbits.com/settlement-of-dlcfd/) on SuredBits blog
 
 [Previous - Schnorr](./schnorr.md) 
