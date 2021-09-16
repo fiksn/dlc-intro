@@ -37,7 +37,7 @@ so
 
 R is the published value, O is Olivias public key
 
-this values (points on the eliptic curve) are called ** yptors**
+this values (points on the eliptic curve) are called **encryptors**
 
 ### Channel
 
@@ -49,7 +49,7 @@ Before that block is transmitted to the blockchain Alice and Bob make sure each 
 
 #### Contract
 
-Alice bets on "heads" and creates an output from that UTXO that can be spent using the private key for some public key Ai that is defined as A + sHEADS * G
+Alice bets on "heads" and creates an output from that UTXO that can be spent using the private key for some public key Ai that is defined as **A + sHEADS * G**.
 
 That is her public key but skewed with an encryptor (sHEADS * G) which is publicly known (depending on R from Olivia). She signs the transaction, but without Bob's signature that can't be broadcasted to the network.
 
