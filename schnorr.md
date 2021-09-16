@@ -1,6 +1,7 @@
 ## Schnorr Signature Scheme
 
-![Claus-Peter Schnorr](./Claus-Peter_Schnorr.jpg).
+![Claus-Peter Schnorr](./Claus-Peter_Schnorr.jpg)
+
 (Image: Claus-Peter Schnorr - from Wikipedia)
 
 It was invented by german mathematician Claus-Peter Schnorr.
@@ -9,7 +10,7 @@ Unfortunately he patented the scheme in 1988 (patent expired in February 2008). 
 
 ### Signature
 
-Signature is the pair (R, s) that must be in a certain relation (very similar to ECDSA just that s is calculated differently)
+Signature is the pair (R, s) that must be in a certain relation
 
 We choose a random integer k and calculate
 
@@ -64,9 +65,17 @@ k is called nonce since it must be used exactly once
 
 If it isn't you can factor out d - which is your private key!
 
+### Difference with ECDSA
+
+In ECDSA calculation of s involves a division by k (which is not publicly known).
+
+If you have a formula: a + b + c and multiply it by G you can calculate it either as (a+b+c)*G or as a*G + b*G + c*G
+
+if you look at a as private key and a*G as public key this means that you can either combine multiple private keys and transform them to the corresponding public key but you can also directly combine multiple public keys to the same combined public key. That is the beauty of Schnorr that cannot be done with other signature schemes.
+
 ### MuSig (n-of-n)
 
-Unlike ECDSA Schnorr signatures are linear and can be combined. It is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
+This way it is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
 
 ### Ring signatures
 

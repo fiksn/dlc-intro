@@ -37,7 +37,7 @@ so
 
 R is the published value, O is Olivias public key
 
-this values (points on the eliptic curve) are called **encryptors**
+this values (points on the eliptic curve) are called ** yptors**
 
 ### Channel
 
@@ -60,15 +60,23 @@ Then also Bob creates a spend from the multisig: he uses bi and in the tx you ca
 Those two transactions are never broadcasted on-chain (similar to bailout tx).
 They are called **contract execution transactions (CETs)**.
 
+#### Liveness argument (DoS prevention)
+
+In practice bailout and CETs are combined and thus the scheme differs a bit from Lightning network. Both parties exchange all CETs before even broadcasting the initial 2-of-2 multisig. That is Alice holds a tx that can be spent by her  "tweaked private key" or by Bob after a timelock.
+
+If that wasn't the case one party could hold the other hostage. Like Alice signs everything from Bob, but then Bob refuses to do the same. Now Bob can either win or lose, but Alice can only lose (since she doesn't have her transaction signed by Bob).
+
+Additionally the loser could broadcast the wrong CET to the network. It will be a valid spend of the UTXO, but nobody will be able to claim the funds. This is another DoS scenario that is mitigated by the fact that in such a case other party can claim all the funds (similar to the penalization step in Lightning).
+
 #### Settlement
 
 Olivia reveals either sHEADS or sTAILS. If she reveals both of them (or more than one in case there more than two options) her private key is compromised (can be factored out since same R and thus also k was used).
 
-Only she can reveal them because o (her private key) must be used for signing.
+Only she can reveal them because **o** (her private key) must be used for signing.
 
-Say Olivia publishes sHEADS.
+Say Olivia publishes **sHEADS**.
 
-Now Alice can compute private key ai which is just a + sHEADS.
+Now Alice can compute private key **ai** which is just **a + sHEADS**.
 Only she knows her private key a, so this value doesn't help anyone.
 But she can now sweep the funds. 
 
