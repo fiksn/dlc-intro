@@ -10,4 +10,6 @@ child-pays-for-parent as contract is settled anyway market maker can optimize fo
 ***
 - Q: How do timelocks on Bitcoin work?
 - A: Each transaction has **nLockTime** field which means do not include this transaction in a block until constraint is met. If the value is < 500000000 constraint means minimal block height and higher numbers means minimal mean timestamp (as reported by miners in the block). You can transmit transactions with wrong nLockTime but they will never be included in any block, similarly as if you specified a too low fee. BIP65 in 2015 also included an opcode OP_CHECKLOCKTIMEVERIFY to programmatically check the condition in script (using OP_IF and OP_ELSE). Actually it will just compare nLockTime to the specified value (but as mentioned too high value will not work on the blockchain anyway). BIP68 also brought **nSequence** repurposing and BIP112 OP_CHECKSEQUENCEVERIFY which can be used to obtain a relative-timelock (depending on when previous transaction was included in a block).
-
+***
+- Q: How to distinguish ECDSA from Schnorr signature?
+- A: Very hard without actually verifying the signature, since both produce 2 values that look similar. ECDSA signature is longer - usually 71 to 72 bytes while Schnorr signature is 64 byte long when used with Bitcoin. However there is no need to distinguish both signature schemes since Schnorr is used just with version 1 witness script (in v0 as well as legacy scriptSig ECDSA will continue to be used).
