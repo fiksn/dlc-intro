@@ -6,3 +6,5 @@ They offer a way to implement financial smart contracts on Bitcoin and what is m
 Outline: 
 
 First we need go through some [Eliptic Curve Cryptography Basics](ecc101.md). Then we tackle [Schnorr Signature Scheme](./schnorr.md) and finally explain [Discreet Log Contracts](./dlc.md).
+
+You might want to check out the [FAQ](./faq.md) as well.

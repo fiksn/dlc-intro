@@ -37,7 +37,7 @@ so
 
 R is the published value, O is Olivias public key
 
-this values (points on the eliptic curve) are called **encryptors**
+this values (points on the elliptic curve) are called **encryptors**
 
 ### Channel
 
