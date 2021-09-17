@@ -62,7 +62,7 @@ They are called **contract execution transactions (CETs)**.
 
 #### Liveness argument (DoS prevention)
 
-In practice bailout and CETs are combined and thus the scheme differs a bit from Lightning network. Both parties exchange all CETs before even broadcasting the initial 2-of-2 multisig. That is Alice holds a tx that can be spent by her  "tweaked private key" or by Bob after a timelock.
+In practice bailout and CETs are combined and thus the scheme differs a bit from Lightning network. Both parties exchange all CETs before even broadcasting the initial 2-of-2 multisig. That is Alice holds a tx that can be spent by her "tweaked private key" or by Bob after a timelock.
 
 If that wasn't the case one party could hold the other hostage. Like Alice signs everything from Bob, but then Bob refuses to do the same. Now Bob can either win or lose, but Alice can only lose (since she doesn't have her transaction signed by Bob).
 
@@ -91,7 +91,7 @@ Olivia has no incentive to publish the results, it is only her reputation that s
 
 She must use a random k each time. Using the same k twice - she loses her private key (which might lead to loss of funds locked in some sort of fidelity bond).
 
-If must be possible to enumerate all possible outcomes in advance (for price this can get messy). You can then use a certain discretization.
+If must be possible to enumerate all possible outcomes in advance (for price this can get messy). You can then use a certain discretization (accuracy on 1000 sats). There is also a way to have two bets (which means Olivia pushes two Rs - one for the mantisa bet and one for the exponent bet).
 
 Only one outcome can win (or none), if there are combinations you need to create a power-set. (User can still bet on multiple outcomes, but care has to be taken by peers if that creates a sure bet). 
 
@@ -102,11 +102,12 @@ E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he kno
 - [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to earn income on your BTC without giving up custody
 - [SuredBits](https://suredbits.com) - they also have [oracles](https://oracle.suredbits.com/) and presented something called [Discrete Log Contract for Difference - DLCFD](https://suredbits.com/settlement-of-dlcfd/)
 
-
 ## Implementations 
 * [NDLC implementation by Nicolas Dorier](https://github.com/dgarage/NDLC) 
 * [rust-dlc](https://github.com/p2pderivatives/rust-dlc)
 * [cfd-dlc](https://github.com/p2pderivatives/cfd-dlc)
 * [bitcoin-s](https://github.com/bitcoin-s/bitcoin-s)
 
-[Previous - Schnorr](./schnorr.md) 
+[Previous - Schnorr](./schnorr.md)
+
+[Next - FAQ](./faq.md) 

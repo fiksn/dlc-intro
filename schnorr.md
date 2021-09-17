@@ -4,7 +4,7 @@
 
 (Image: Claus-Peter Schnorr - from Wikipedia)
 
-It was invented by german mathematician Claus-Peter Schnorr.
+The scheme was invented by german mathematician Claus-Peter Schnorr.
 
 Unfortunately he patented the scheme in 1988 (patent expired in February 2008). So during the creation of Bitcoin it was "free", unfortunately the space lacked good libraries. Therefore ECDSA scheme was used (which is more complicated on purpose to not violate the patent).
 
