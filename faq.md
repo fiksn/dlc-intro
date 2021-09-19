@@ -2,7 +2,7 @@
 
 - Q: How can DLCs already work in practice given that Taproot has not yet activated on mainnet and we thus don't have Schnorr signatures yet?
 - A: In fact only the oracle (Olivia) needs to use Schnorr signatures and
-this data is all off-chain. So it doesn't depend on Bitcoin at all (except possibly as an opaque OP_DATA for distribution). With a proper adaptor signature it is possible to construct DLCs also only with ECDSA but a cost of complexity.
+this data is all off-chain. So it doesn't depend on Bitcoin at all (except possibly as an opaque OP_DATA for distribution). With a proper adaptor signature it is possible to construct DLCs also only with ECDSA but at the cost of higher complexity (and lower privacy).
 ***
 - Q: What are **adaptor signatures**?
 - A: An adaptor signature (or signature adaptor) is an additional signature which is combined with an initial signature to reveal a secret piece of data. 
