@@ -2,11 +2,11 @@
 
 - Q: How can DLCs already work in practice given that Taproot has not yet activated on mainnet and we thus don't have Schnorr signatures yet?
 - A: In fact only the oracle (Olivia) needs to use Schnorr signatures and
-this data is all off-chain. So it doesn't depend on Bitcoin at all (except possibly as an opaque OP_DATA for distribution). 
+this data is all off-chain. So it doesn't depend on Bitcoin at all (except possibly as an opaque OP_DATA for distribution). With a proper adaptor signature it is possible to construct DLCs also only with ECDSA but a cost of complexity.
 ***
 - Q: What are **adaptor signatures**?
 - A: An adaptor signature (or signature adaptor) is an additional signature which is combined with an initial signature to reveal a secret piece of data. 
-- Keys can always be "adapted". The first well known example of such a scheme is [Homomorphic Payment Addresses and the Pay-to-Contract Protocol](https://arxiv.org/pdf/1212.3257.pdf) which introduces the P2C (pay-to-contract) protocol. The idea is that if you have public key **P** you can add **diff*G** and the corresponding private key will be **x+diff** (since (x+diff)* G = x * G + diff*G). Now if you take diff to be a hash of some ToS you can make sure spending party knows about it (or else it wouldn't be able to calculate the value **diff**). A special example of **adaptor** is also DLC (where you tweak public and private key with a specific s value from oracle).
+- Keys can always be "adapted". The first well known example of such a scheme is [Homomorphic Payment Addresses and the Pay-to-Contract Protocol](https://arxiv.org/pdf/1212.3257.pdf) which introduces the P2C (pay-to-contract) protocol. The idea is that if you have public key **P** you can add **diff*G** and the corresponding private key will be **x+diff** (since (x+diff)* G = x * G + diff*G). Now if you take diff to be a hash of some ToS you can make sure spending party knows about it (or else it wouldn't be able to calculate the value **diff**).
 - However here the trick is that you operate on existing signatures (you don't have any private key!). With ECDSA a combination is very hard (https://medium.com/crypto-garage/adaptor-signature-on-ecdsa-cac148dfa3ad). The best option you have is to use multisig and use two or more seperate signatures.
 - With Schnorr on the other side this is easy since s is linear. You can basically just sum two or more s values together (but there are some important caveats that are explained in MuSig scheme - so please don't roll your own crypto).
 ***
