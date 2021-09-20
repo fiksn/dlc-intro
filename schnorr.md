@@ -81,13 +81,14 @@ Idea is that you have participants with public keys P1, P2 ... Pn.
 
 Anyone can sign but you can't know which of them did it. Something similar is used in Monero.
 
-### Connection to zero-knowledge proofs
+### Connection with zero-knowledge proofs
 
-Basically the signature scheme derives from an interactive zero-knowledge proof that you know a discrete logarithm d for a certain value P (P = d*G). You create a random R (R = k*G). We give the other party R and get some random value h from them.
+Basically the signature scheme derives from an interactive zero-knowledge proof that you know a discrete logarithm d for a certain value P (P = d*G). 
+You create a random R (R = k*G), give it to the peer and get some random value h from them.
 
-Now we calculate s = k - h*d and can convince the other side that we know d without ever telling it (so this is a Zero-knowledge Proof of the fact we know d!)
+Now you can calculate s = k - h*d to convince the other side about your knowledge of d.
 
-Using something called [Fiat-Shamir heuristic](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) we can transform this interactive protocol to a non-interactive one. Basically we replace other side who provides h with a hash of all involved values H(G, P, R). And since G is a constant anyway that is not really necessary.
+Using something called [Fiat-Shamir heuristic](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) we can transform this interactive protocol to a non-interactive one. Basically we replace other side who provides random h with a hash of all involved values H(G, P, R). And since G is a constant anyway that is not strictly necessary.
 
 [Previous - ECC](./ecc101.md) 
 
