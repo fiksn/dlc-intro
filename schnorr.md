@@ -20,7 +20,7 @@ R = k*G
 
 and s is defined as
 
-s = k - h*d
+**s = k - h*d**
 
 (sometimes - is also + doesn't really matter)
 
@@ -69,13 +69,9 @@ If it isn't you can factor out d - which is your private key!
 
 In ECDSA calculation of s involves a division by k (which is not publicly known).
 
-If you have a formula: a + b + c and multiply it by G you can calculate it either as (a+b+c)*G or as a*G + b*G + c*G
+### Mu-Sig (n-of-n)
 
-if you look at a as private key and a*G as public key this means that you can either combine multiple private keys and transform them to the corresponding public key but you can also directly combine multiple public keys to the same combined public key. That is the beauty of Schnorr that cannot be done with other signature schemes.
-
-### MuSig (n-of-n)
-
-This way it is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
+Due to linearity it is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
 
 ### Ring signatures
 
@@ -84,6 +80,14 @@ This way it is possible to "compress" multiple public keys into one and then als
 Idea is that you have participants with public keys P1, P2 ... Pn.
 
 Anyone can sign but you can't know which of them did it. Something similar is used in Monero.
+
+### Connection to zero-knowledge proofs
+
+Basically the signature scheme derives from an interactive zero-knowledge proof that you know a discrete logarithm d for a certain value P (P = d*G). You create a random R (R = k*G). We give the other party R and get some random value h from them.
+
+Now we calculate s = k - h*d and can convince the other side that we know d without ever telling it (so this is a Zero-knowledge Proof of the fact we know d!)
+
+Using something called [Fiat-Shamir heuristic](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) we can transform this interactive protocol to a non-interactive one. Basically we replace other side who provides h with a hash of all involved values H(G, P, R). And since G is a constant anyway that is not really necessary.
 
 [Previous - ECC](./ecc101.md) 
 
