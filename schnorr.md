@@ -6,7 +6,7 @@
 
 The scheme was invented by german mathematician Claus-Peter Schnorr.
 
-Unfortunately he patented the scheme in 1988 (patent expired in February 2008). So during the creation of Bitcoin it was "free", unfortunately the space lacked good libraries. Therefore ECDSA scheme was used (which is more complicated on purpose to not violate the patent).
+Unfortunately he patented the scheme in 1988 (patent expired in February 2008). So during the creation of Bitcoin it was "free", however the space lacked good libraries. Therefore ECDSA scheme was used (which is more complicated on purpose to not violate the patent).
 
 ### Signature
 
@@ -65,7 +65,7 @@ k is called nonce since it must be used exactly once
 
 If it isn't you can factor out d - which is your private key!
 
-### Difference with ECDSA
+### Difference to ECDSA
 
 In ECDSA calculation of s involves a division by k (which is not publicly known).
 
@@ -81,14 +81,15 @@ Idea is that you have participants with public keys P1, P2 ... Pn.
 
 Anyone can sign but you can't know which of them did it. Something similar is used in Monero.
 
-### Connection with zero-knowledge proofs
+### Zero-knowledge proofs
 
-Basically the signature scheme derives from an interactive zero-knowledge proof that you know a discrete logarithm d for a certain value P (P = d*G). 
+Basically the signature scheme derives from an interactive zero-knowledge proof that you know a discrete logarithm **d** for a certain public value **P** (P = d*G).
+
 You create a random R (R = k*G), give it to the peer and get some random value h from them.
 
-Now you can calculate s = k - h*d to convince the other side about your knowledge of d.
+Now only you can calculate s = k - h*d to convince the other side about your knowledge of d.
 
-Using something called [Fiat-Shamir heuristic](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) we can transform this interactive protocol to a non-interactive one. Basically we replace other side who provides random h with a hash of all involved values H(G, P, R). And since G is a constant anyway that is not strictly necessary.
+Using something called [Fiat-Shamir heuristic](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) we can transform this interactive protocol to a non-interactive one. To do that we replace the other side who provides random h with a hash of all involved values H(G || P || R). And since G is a well-known constant anyway it is not necessary to include it in the hash and H(P || R) suffices.
 
 [Previous - ECC](./ecc101.md) 
 
