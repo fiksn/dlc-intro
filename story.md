@@ -3,7 +3,7 @@
 ### Characters
 
 We have *Alice* and *Bob* who want to bet against each other regarding what the weather will be tomorrow. Then there is *Olivia* who is working
-at a local radio station. She plays music on the radio and announces the weather. So on a given day she might say "if tomorrow is sunny I will play a rock song at 9:00 and in case it rains I will play a pop song". Alice and Bob both listen to that radio station, so they can use it (and Olivia) as an oracle. They need somebody decide on the outcome since Alice might just always claim the thing she bet on has happened and vice-versa with Bob. This way they will never come to an agreement.
+at a local radio station. She plays music on the radio and announces the weather. So on a given day she might say "if tomorrow is sunny I will play a rock song at 9:00 and in case it rains I will play a pop song". Alice and Bob both listen to that radio station, so they can use it (and Olivia) as an oracle. They need somebody to decide on the outcome since Alice abd Bob might not come to an agreement among themselves (Bob could always claim that is was raining, despite in reality it was sunny).
 
 ### Escrow
 
@@ -41,11 +41,11 @@ Sure Alice and Bob have some starting position where to search but there are sti
 
 ### Reveal
 
-Next day at 09:00 the sun is shining so the radio plays "Bohemian Rhapsody". After the song is known Alice and Bob can simply go to their secret starting place in the park and find the hidden "sun conctract". Bob could dig out his version but as he lost he might not want to cooperate anymore. There is no way for him to find the "rain contract". Also if Bob doesn't dig out his contract Alice will be more than happy to do so with her version and claim the money. Infact she has to do that as soon as possible since after two days Bob could use the "abort letter" to frauduently get his stake back.
+Next day at 09:00 the sun is shining so the radio plays "Bohemian Rhapsody". After the song is known Alice and Bob can simply go to their secret starting place in the park and find the hidden "sun conctract" (since they now know the exact length of the song). Bob could dig out his version but as he lost he might not want to cooperate anymore. There is no way for him to find the "rain contract". Also if Bob doesn't dig out his contract Alice will be more than happy to do so with her version and claim the money. Infact she has to do that as soon as possible since after two days Bob could use the "abort letter" to frauduently get his stake back.
 
 ### What can go wrong
 
-Bob could collude with Olivia. And at 9:00 we might hear some pop song despite a sunny weather. In that case Bob would indeed get the money this time, but nobody would ever trust Olivia. Afterall there were thousands of people that heard her promise yesterday. They don't know about the specific bet between Alice and Bob unless somebody announces but still everybody knows Olivia is not reliable. (Note that with Olivia having no clue about the bet there is also less possibility that somebody will influence her, but on the down side she also doesnt't get any compensation for playing "judge" except her salary).
+Bob could collude with Olivia. And at 9:00 we might hear some pop song despite a sunny weather. In that case Bob would indeed get the money this time, but nobody would ever trust Olivia. Afterall there were thousands of people that heard her promise yesterday. They don't know about the specific bet between Alice and Bob (unless somebody explicitly told her) but still everybody knows Olivia is not reliable. (Note that with Olivia having no clue about the bet there is also less possibility that somebody will influence her, but on the down side she also doesnt't get any compensation for playing "judge" except her salary). But this can be abstracted with a market place: it doesn't matter whether you listen to the radio station or not, you still have to pay a "radio subscription fee".
 
 Olivia might play the pop and rock song at the same time in order to help both sides. But in this case it will be just a strange noise and Olivia will lose her job for playing junk (which is even worse than the first option). To apply for the next job she will have to rename herself to Olga.
 

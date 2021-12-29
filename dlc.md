@@ -45,7 +45,7 @@ For Alice and Bob it is very similar to opening a Lightning channel: they create
 
 #### Bailout
 
-Before that block is transmitted to the blockchain Alice and Bob make sure each peer signs a bailout transaction. So Alice can whitdraw her part after a timelock, and vice-versa for Bob.
+Before anything is transmitted to the blockchain Alice and Bob make sure each peer signs a bailout transaction. So Alice can whitdraw her part after a timelock, and vice-versa for Bob.
 
 #### Contract
 
@@ -110,4 +110,4 @@ E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he kno
 
 [Previous - Schnorr](./schnorr.md)
 
-[Next - FAQ](./faq.md) 
+[Next - FAQ](./faq.md)

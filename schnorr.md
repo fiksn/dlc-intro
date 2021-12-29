@@ -10,7 +10,7 @@ Unfortunately he patented the scheme in 1988 (patent expired in February 2008). 
 
 ### Signature
 
-Signature is the pair (R, s) that must be in a certain relation
+Signature is the pair (R, s) that must be in a certain relation (that depends on private key and the thing that you want to sign).
 
 We choose a random integer k and calculate
 
@@ -71,7 +71,17 @@ In ECDSA calculation of s involves a division by k (which is not publicly known)
 
 ### Mu-Sig (n-of-n)
 
-Due to linearity it is possible to "compress" multiple public keys into one and then also signers can cooperate and produce "master" private key corresponding to the master public key for spending the funds.
+Traditionally with Bitcoin if you wanted that funds (UTXO) could be spent only when multiple people cooperate you could use multisig. This however means that for everyone involved another signature is added to the transaction.
+With Schnorr signatures you can combine multiple signatures into one (and thus instead of n signatures just broadcast that 1, saving block space).
+
+If you have private keys a and b, you could calculate public key X = (ai+bi) * G which could be spend by private key x = ai + bi (no matter what signature scheme is used). So in essence you can already "compress" keys.
+Problem is just how will those two persons cooperate, because to spend each person will learn about the other one's private key (or else x cannot be calculated). You can imagine that despite "compressing keys" you can't "compress" signatures with ECDSA.
+
+With Schnorr you can do the combination on the actual signatures, first persons sings and gives (Ra, sa) to second one. He can now calculate (Rx, sx) which will spend the funds. Usually Rx = Ra and sx = linear combination of sa and sb (which
+is possible only with Schnorr signature scheme).
+
+Mu-Sig is a method to actually implement this. Biggest complication comes from the fact that among the groups of signers if done in naive way last one to sign can always cheat in a way that the resulting signature can be produced ONLY by him (without
+cooperation from others). You can imagine that he chooses his part in such a way that sum of all other signatures is 0. Note that Mu-Sig is always about n out of n signatures (you can't do threshold signatures, like 2-of-3). For that you still need to rely on traditional multisig method.
 
 ### Ring signatures
 

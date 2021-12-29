@@ -1,6 +1,6 @@
 ## Frequently asked (tricky) questions and answers
 
-- Q: How can DLCs already work in practice given that Taproot has not yet activated on mainnet and we thus don't have Schnorr signatures yet?
+- Q: How can DLCs already work in practice given that Taproot has not yet activated on mainnet and we thus don't have Schnorr signatures yet? (Note: this was written before taproot activation on 14.11.2021).
 - A: In fact only the oracle (Olivia) needs to use Schnorr signatures and
 this data is all off-chain. So it doesn't depend on Bitcoin at all (except possibly as an opaque OP_DATA for distribution). With a proper adaptor signature it is possible to construct DLCs also only with ECDSA but at the cost of higher complexity (and lower privacy). The extreme case would be  simple ECDSA everywhere. Using 2-of-2 multisig with your public key and some random public key you've got from the oracle. Then oracle publishes the private key. But such a scheme would not be very "discreet". So as described in next paragraph you can do "key adaptation" to hide the fact that you are using a value from the oracle. But that is also not a DLC since oracle could disclose multiple private keys. You can imagine that Schnorr forces the oracle to be (more) honest.
 - Q: What are **adaptor signatures**?
