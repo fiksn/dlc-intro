@@ -101,6 +101,7 @@ E.g. Bob woudn't sign Alice a bet on "heads" and then also "tails", since he kno
 
 - [Atomic.Finance](https://atomic.finance) uses DLCs to implement covered calls to earn income on your BTC without giving up custody
 - [SuredBits](https://suredbits.com) - they also have [oracles](https://oracle.suredbits.com/) and presented something called [Discrete Log Contract for Difference - DLCFD](https://suredbits.com/settlement-of-dlcfd/)
+- [https://blog.chain.link/dlc-link-chainlink-grant-bitcoin-discreet-log-contracts]
 
 ## Implementations 
 * [NDLC implementation by Nicolas Dorier](https://github.com/dgarage/NDLC) 

@@ -81,7 +81,9 @@ With Schnorr you can do the combination on the actual signatures, first persons 
 is possible only with Schnorr signature scheme).
 
 Mu-Sig is a method to actually implement this. Biggest complication comes from the fact that among the groups of signers if done in naive way last one to sign can always cheat in a way that the resulting signature can be produced ONLY by him (without
-cooperation from others). You can imagine that he chooses his part in such a way that sum of all other signatures is 0. Note that Mu-Sig is always about n out of n signatures (you can't do threshold signatures, like 2-of-3). For that you still need to rely on traditional multisig method.
+cooperation from others). You can imagine that he chooses his "randon" part in such a way that sum of all other signatures is 0. Note that Mu-Sig is always about n out of n signatures (you can't do threshold signatures, like 2-of-3). For that you still need to rely on traditional multisig method.
+
+Read more in the [MuSig2 paper](https://eprint.iacr.org/2020/1261.pdf).
 
 ### Ring signatures
 
